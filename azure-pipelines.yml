@@ -21,6 +21,21 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'specific'
+    project: 'c35a68dc-a75f-424a-b77a-d9b3f88b00a5'
+    pipeline: '2'
+    buildVersionToDownload: 'latest'
+    downloadType: 'specific'
+    itemPattern: 'roslyn_renamer.cs'
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: PowerShell@2
+  inputs:
+    filePath: '$(System.ArtifactsDirectory)'
+    arguments: '$(System.ArtifactsDirectory)'
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
