@@ -29,12 +29,12 @@ steps:
     buildVersionToDownload: 'latest'
     downloadType: 'specific'
     itemPattern: 'roslyn_renamer.cs'
-    downloadPath: '$(System.ArtifactsDirectory)'
+    downloadPath: '$(System.DefaultWorkingDirectory)'
 
 - task: PowerShell@2
   inputs:
-    filePath: '$(System.ArtifactsDirectory)'
-    arguments: '$(System.ArtifactsDirectory)'
+    filePath: '$(System.DefaultWorkingDirectory)'
+    arguments: '$(solution)'
 
 - task: VSBuild@1
   inputs:
